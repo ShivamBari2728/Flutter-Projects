@@ -16,8 +16,5 @@ To run these project, you will need following applications in your PC.
 
 `Android/iphone Emulator or physical phone`
 
-
-
-
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![google-flutter-logo-optimized](https://github.com/user-attachments/assets/65c11956-3f2e-4d10-a22e-70e99ec6daee)
 
