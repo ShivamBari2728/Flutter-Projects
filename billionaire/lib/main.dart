@@ -2,6 +2,7 @@
 
 import 'package:billionaire/addmoneybutton.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class Myapp extends StatefulWidget {
 
 class _MyappState extends State<Myapp> {
   double balance = 0;
-  
+
   void addMoney() async {
     setState(() {
       balance = balance + 500;
@@ -27,6 +28,7 @@ class _MyappState extends State<Myapp> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setDouble('balance', balance);
   }
+
   @override
   void initState() {
     loadBalance();
@@ -69,10 +71,10 @@ class _MyappState extends State<Myapp> {
                       SizedBox(
                         height: 10,
                       ),
-                      Text("$balance"),
+                      Text("${NumberFormat.simpleCurrency().format(balance)}"),
                     ],
                   )),
-              addMoneybutton(addMoneyFunction: addMoney,) 
+              addMoneybutton(addMoneyFunction: addMoney)
               //passing the function to the refrence variable.
             ],
           ),
