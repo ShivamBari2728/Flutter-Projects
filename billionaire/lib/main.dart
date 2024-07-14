@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:billionaire/addmoneybutton.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,30 +16,31 @@ class Myapp extends StatefulWidget {
 }
 
 class _MyappState extends State<Myapp> {
-  double balance =0 ;
+  double balance = 0;
+  
   void addMoney() async {
     setState(() {
-      balance = balance +500;
+      balance = balance + 500;
     });
-      
 
     // Obtain shared preferences.
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setDouble('balance', balance);
-
   }
-  void loadBalance() async
-  {
+  @override
+  void initState() {
+    loadBalance();
+    super.initState();
+  }
+
+  void loadBalance() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    
+
     setState(() {
-    balance = prefs.getDouble('balance') ?? 0; 
-    // "??(null aware operator)" is it used as a fallback value as for the first time the value will be null.
-      
+      balance = prefs.getDouble('balance') ?? 0;
+      // "??(null aware operator)" is it used as a fallback value as for the first time the value will be null.
     });
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -68,18 +70,10 @@ class _MyappState extends State<Myapp> {
                         height: 10,
                       ),
                       Text("$balance"),
-                      OutlinedButton(onPressed: loadBalance, child: Text("Load Balance"))
                     ],
                   )),
-              Expanded(
-                  flex: 1,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 122, 145, 248),
-                        minimumSize: Size(double.infinity, 0),
-                      ),
-                      onPressed: addMoney,
-                      child: Text("Add Money")))
+              addMoneybutton(addMoneyFunction: addMoney,) 
+              //passing the function to the refrence variable.
             ],
           ),
         ),
