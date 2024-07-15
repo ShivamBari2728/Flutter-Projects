@@ -19,6 +19,7 @@ class _AddtodoState extends State<Addtodo> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextField(
+          autofocus: true, //open keyboard automatically.
           controller: texteditor,
           decoration: InputDecoration(
               icon: Icon(Icons.add_task_rounded), hintText: "Add task.."),
@@ -28,7 +29,9 @@ class _AddtodoState extends State<Addtodo> {
         ),
         ElevatedButton(
             onPressed: () {
+              if(texteditor.text != ""){
               widget.sendtext(todotext: texteditor.text);
+              }
               texteditor.text = '';
             },
             child: Text(
