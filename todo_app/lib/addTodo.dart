@@ -29,8 +29,8 @@ class _AddtodoState extends State<Addtodo> {
         ),
         ElevatedButton(
             onPressed: () {
-              if(texteditor.text != ""){
-              widget.sendtext(todotext: texteditor.text);
+              if (texteditor.text != "") {
+                widget.sendtext(todotext: texteditor.text);
               }
               texteditor.text = '';
             },
