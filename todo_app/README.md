@@ -1,4 +1,4 @@
-# To Do App (Listif)
+# To Do App (Listify)
 
 It's a fundamental to-do app aimed at exploring advanced Flutter concepts such as conditional widgets, buttons, interactive elements, and features like dismissible widgets.
 
