@@ -1,16 +1,6 @@
-# todo_app
+# To Do App (Listif)
 
-A new Flutter project.
+It's a fundamental to-do app aimed at exploring advanced Flutter concepts such as conditional widgets, buttons, interactive elements, and features like dismissible widgets.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+![image (3)](https://github.com/user-attachments/assets/de4862e8-11ca-4fe9-bd8f-1f5bd645e703)
