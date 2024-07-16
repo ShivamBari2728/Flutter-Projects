@@ -7,8 +7,8 @@ Flutter is an open-source UI software development kit created by Google. It allo
 
 I will be studying and developing cross-platform mobile apps in this repository.
 
-#Resource
-I am learning from "udemy.com/course/learn-flutter-complete-guide/".
+# Resource
+I am learning from " www.udemy.com/course/learn-flutter-complete-guide/ ".
 
 ## Setup
 
