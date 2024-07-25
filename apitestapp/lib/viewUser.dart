@@ -1,15 +1,17 @@
+// ignore_for_file: use_build_context_synchronously, prefer_const_constructors
+
 import 'dart:ffi';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Viewuser extends StatefulWidget {
   Map<String, dynamic> userstoredData = {};
   int index;
   //int index = 0;
-  Viewuser(
-      {super.key, required this.userstoredData, required this.index});
+  Viewuser({super.key, required this.userstoredData, required this.index});
 
   @override
   State<Viewuser> createState() => _ViewuserState();
@@ -53,7 +55,6 @@ class _ViewuserState extends State<Viewuser> {
                         InkWell(
                             onTap: () {
                               onDelete();
-
                               setState(() {});
                             },
                             child: Text("Confirm"))
@@ -64,7 +65,6 @@ class _ViewuserState extends State<Viewuser> {
           }, itemBuilder: (context) {
             return [
               PopupMenuItem(value: 1, child: Text("Delete")),
-              PopupMenuItem(value: 2, child: Text("..")),
             ];
           })
         ],
