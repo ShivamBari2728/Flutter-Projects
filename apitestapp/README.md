@@ -1,6 +1,6 @@
 # Staff Management app
 
-This app access data from Firebase Realtime Database and can perform CRUD operation as well. 
+This app access data from Firebase Realtime Database using API and can perform CRUD operation as well. 
 
 # Screenshots
 
