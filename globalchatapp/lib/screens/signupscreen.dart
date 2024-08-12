@@ -24,7 +24,8 @@ class _SignupscreenState extends State<Signupscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Signup"), backgroundColor: Colors.blue),
+      appBar: AppBar(title: Text("Signup"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -35,7 +36,7 @@ class _SignupscreenState extends State<Signupscreen> {
                 SizedBox(
                   height: 100,
                   width: 100,
-                  child: Image.asset("assets/images/image.png"),
+                  child: Image(image: NetworkImage("https://i.postimg.cc/PJqwdZLG/globchat-cion-removebg-preview.png")),
                 ),
                 SizedBox(
                   height: 10,

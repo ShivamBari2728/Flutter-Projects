@@ -19,18 +19,25 @@ class _LoginscreenState extends State<Loginscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: Text(""), backgroundColor: Colors.blue),
+      appBar: AppBar(
+        centerTitle: true,
+         
+      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
           key: userForm,
           child: Column(
             children: [
-              SizedBox(height: 100,),
+              SizedBox(height: 20,),
             SizedBox(
               height: 100,
               width: 100,
-              child: Image.asset("assets/images/image.png"),),
+              child: Image(
+                
+                image: NetworkImage("https://i.postimg.cc/PJqwdZLG/globchat-cion-removebg-preview.png")),),
+                SizedBox(height: 30,),
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {

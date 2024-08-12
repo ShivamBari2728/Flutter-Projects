@@ -51,7 +51,7 @@ class _SplashscreenState extends State<Splashscreen> {
               width: 100,
               child: Image(
                   image: NetworkImage(
-                      "https://static-00.iconduck.com/assets.00/chat-icon-1024x1024-o88plv3x.png")))),
+                      "https://i.postimg.cc/PJqwdZLG/globchat-cion-removebg-preview.png")))),
     );
   }
 }
