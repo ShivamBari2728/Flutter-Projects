@@ -17,7 +17,7 @@ class Splashscreen extends StatefulWidget {
 class _SplashscreenState extends State<Splashscreen> {
   var userdata = FirebaseAuth.instance.currentUser;
   void initState() {
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 3), () {
       if (userdata == null) {
         sendtologinpage();
       } else {

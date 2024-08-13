@@ -246,6 +246,7 @@ class _HomescreenState extends State<Homescreen> {
                   itemBuilder: (BuildContext context, int index) {
                     var Chatname = foundchatroomslist[index]["Chat_Name"];
                     var Chatdesc = foundchatroomslist[index]["Chat_desc"];
+                    
                     return ListTile(
                       onTap: () {
                         Navigator.push(context,
@@ -253,6 +254,7 @@ class _HomescreenState extends State<Homescreen> {
                           return Chatroomscreen(
                             chatroomid: foundchatroomids[index],
                             chatroonname: Chatname,
+                            chatroom_desc: Chatdesc,
                           );
                         }));
                       },
@@ -260,7 +262,7 @@ class _HomescreenState extends State<Homescreen> {
                         child: Icon(Icons.chat_rounded)
                       ),
                       subtitle: Text(Chatdesc),
-                      title: Text(Chatname),
+                      title: Text(Chatname,style: TextStyle(fontWeight: FontWeight.bold),),
                     );
                   }),
             ),

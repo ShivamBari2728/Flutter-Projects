@@ -2,8 +2,10 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:globalchatapp/controllers/messagedeletingcontroller.dart';
 import 'package:globalchatapp/provider/themeprovider.dart';
 import 'package:globalchatapp/provider/userProvider.dart';
+import 'package:globalchatapp/screens/chatinfoscreen.dart';
 import 'package:globalchatapp/screens/homescreen.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -11,9 +13,13 @@ import 'package:intl/intl.dart';
 class Chatroomscreen extends StatefulWidget {
   var chatroonname;
   var chatroomid;
+  var chatroom_desc;
 
   Chatroomscreen(
-      {super.key, required this.chatroomid, required this.chatroonname});
+      {super.key,
+      required this.chatroomid,
+      required this.chatroonname,
+      required this.chatroom_desc});
 
   @override
   State<Chatroomscreen> createState() => _ChatroomscreenState();
@@ -45,6 +51,10 @@ class _ChatroomscreenState extends State<Chatroomscreen> {
       }
     }
   }
+ 
+
+
+
 
   Future<void> onDelete() async {
     await db
@@ -59,6 +69,7 @@ class _ChatroomscreenState extends State<Chatroomscreen> {
             Provider.of<userProvider>(context, listen: false).data?["userID"] ??
                 "";
         final ownerId = doc["Chat_ownerId"] ?? "";
+        
 
         if (userId is String && ownerId is String && userId == ownerId) {
           await db.collection("chatrooms").doc(widget.chatroomid).delete();
@@ -111,7 +122,7 @@ class _ChatroomscreenState extends State<Chatroomscreen> {
                     return AlertDialog(
                       title: Text("Delete?"),
                       content:
-                          Text("Are you Sure you want to delete this user?"),
+                          Text("Are you Sure you want to delete this chat?"),
                       actions: [
                         InkWell(
                           onTap: () {
@@ -128,9 +139,19 @@ class _ChatroomscreenState extends State<Chatroomscreen> {
                       ],
                     );
                   });
+            } else if (value == 2) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                return Chatinfoscreen(
+                  chatroomname: widget.chatroonname,
+                  chatrom_decs: widget.chatroom_desc,
+                  chatroomid: widget.chatroomid,
+                );
+              }));
             }
           }, itemBuilder: (context) {
             return [
+              PopupMenuItem(value: 2, child: Text("Chat Info")),
               PopupMenuItem(value: 1, child: Text("Delete")),
             ];
           })
@@ -196,51 +217,61 @@ class _ChatroomscreenState extends State<Chatroomscreen> {
                       bool isSender = allmessages[index]["sender_id"] ==
                           Provider.of<userProvider>(context, listen: false)
                               .data!["userID"];
-
-                      return Column(
-                        crossAxisAlignment: isSender
-                            ? CrossAxisAlignment.end
-                            : CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: isSender
-                                ? CrossAxisAlignment.end
-                                : CrossAxisAlignment.start,
-                            children: [
-                              Text(allmessages[index]["sender_name"],
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: isSender
-                                        ? Colors.blue[300]
-                                        : Colors.green[300],
-                                  )),
-                              Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: isSender
-                                        ? Colors.blue
-                                        : themeprovider.isDarkModeOn
-                                            ? const Color.fromARGB(
-                                                255, 51, 51, 51)
-                                            : Colors.grey,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Text(
-                                  allmessages[index]["message"],
-                                  style: TextStyle(fontSize: 15),
+                      String documentId = allmessages[index].id;
+                      return GestureDetector(
+                        onLongPress: () {
+                          Messagedeletingcontroller().showdeleteconfermation(
+                              SenderId: allmessages[index]["sender_id"],
+                              currentuser: isSender,
+                              documentid: documentId,
+                              context: context);
+                        },
+                        child: Column(
+                          crossAxisAlignment: isSender
+                              ? CrossAxisAlignment.end
+                              : CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              crossAxisAlignment: isSender
+                                  ? CrossAxisAlignment.end
+                                  : CrossAxisAlignment.start,
+                              children: [
+                                Text(allmessages[index]["sender_name"],
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: isSender
+                                          ? Colors.blue[300]
+                                          : Colors.green[300],
+                                    )),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: isSender
+                                          ? Colors.blue
+                                          : themeprovider.isDarkModeOn
+                                              ? const Color.fromARGB(
+                                                  255, 51, 51, 51)
+                                              : Colors.grey,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(
+                                    allmessages[index]["message"],
+                                    style: TextStyle(fontSize: 15),
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                formattedTime,
-                                style: TextStyle(
-                                    fontSize: 11, fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          )
-                        ],
+                                Text(
+                                  formattedTime,
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 20,
+                            )
+                          ],
+                        ),
                       );
                     });
               },

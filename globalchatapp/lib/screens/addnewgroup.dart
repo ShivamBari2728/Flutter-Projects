@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,14 @@ class _AddnewgroupState extends State<Addnewgroup> {
             key: groupForm,
             child: Column(
               children: [
-                Center(child: Text("Create Group")),
+                Icon(Icons.minimize_rounded),
+                // Center(
+                //     child: Text(
+                //   "Create Chat",
+                //   style: TextStyle(
+                //     fontSize: 16,
+                //   ),
+                // )),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
@@ -68,7 +75,9 @@ class _AddnewgroupState extends State<Addnewgroup> {
                         Navigator.pop(context, true);
                       }
                     },
-                    child: Text("Create")),
+                    child: Text(
+                      "Create Chat",
+                    )),
               ],
             ),
           ),

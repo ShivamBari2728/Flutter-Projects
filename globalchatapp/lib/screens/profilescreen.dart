@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:globalchatapp/provider/userProvider.dart';
 import 'package:provider/provider.dart';
@@ -12,50 +10,52 @@ class Profilescreen extends StatefulWidget {
 }
 
 class _ProfilescreenState extends State<Profilescreen> {
-  // Map<String, dynamic>? data = {};
-  // var db = FirebaseFirestore.instance;
-  // var user = FirebaseAuth.instance.currentUser;
-
-  // void fetchdata() async {
-  //   await db.collection("users").doc(user!.uid).get().then((datasnapshot) {
-  //     data = datasnapshot.data();
-  //     setState(() {});
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     var userproviderdata = Provider.of<userProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Profile"),
       ),
       body: Container(
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: Image(
-                      image: NetworkImage(
-                          "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png")),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Card(
+            elevation: 5, // Shadow effect
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero, // Rectangle shape
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Name : ${userproviderdata.data?["name"] ?? ""} "),
-                  Text("Email : ${userproviderdata.data?["email"] ?? ""} "),
-                  Text("Country : ${userproviderdata.data?["country"] ?? ""} "),
+                  SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Icon(Icons.person,size: 80,)
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    "Name: ${userproviderdata.data?["name"] ?? ""}",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Email: ${userproviderdata.data?["email"] ?? ""}",
+                    style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    "Country: ${userproviderdata.data?["country"] ?? ""}",
+                    style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                  ),
                 ],
-              )
-            ],
+              ),
+            ),
           ),
         ),
       ),
